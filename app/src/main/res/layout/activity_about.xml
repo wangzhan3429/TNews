@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/about_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/about_icon"
+        android:text="v0.1"
+        android:gravity="center_horizontal"
+        android:id="@+id/about_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="18sp"
+        android:lineSpacingExtra="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/about_version"
+        android:text="猿料是个人的第一个app，里面数据全部来自gank.io，这里要非常感谢干货集中营所有的猿兄猿弟们！感谢您们提供的数据接口，个人只是做了个数据的展示。因为本身技术能力有限，做的不好的地方请同行们多多指教！"
+        android:id="@+id/about_introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!--赞助-->
+
+
+    <TextView
+        android:gravity="center"
+        android:text="Copyright All Rights Reserved."
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/about_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

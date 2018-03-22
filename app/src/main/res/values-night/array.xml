@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="planets_array">
+        <item>Android</item>
+        <item>IOS</item>
+        <item>Web</item>
+        <item>App</item>
+        <item>福利</item>
+        <item>拓展资源</item>
+        <item>瞎推荐</item>
+    </string-array>
+</resources>

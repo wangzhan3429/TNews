@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/comment_Layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" android:layout_marginTop="30dp">
+
+        <EditText
+            android:id="@+id/comment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="反馈标题"
+            android:textColorHint="@color/grey"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/comment_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" android:layout_marginTop="30dp">
+
+
+        <EditText
+            android:id="@+id/comment_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="反馈内容"
+            android:textColorHint="@color/grey"/>
+
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:id="@+id/comment_submit"
+        android:layout_marginTop="30dp"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" android:text="提交"/>
+
+</LinearLayout>

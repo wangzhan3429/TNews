@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="请勾选下面要清除缓存的栏目"/>
+
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clean_cb0"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:text="瞎推荐"/>
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clean_cb1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:text="Android"/>
+
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clean_cb2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:text="iOS"/>
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clean_cb3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:text="前端"/>
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clean_cb4"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:text="福利"/>
+
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clean_cb5"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:text="App"/>
+    <CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/clean_cb6"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:checked="false"
+              android:text="拓展资源"/>
+
+    <Button android:id="@+id/clean_btn"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清除"/>
+</LinearLayout>
