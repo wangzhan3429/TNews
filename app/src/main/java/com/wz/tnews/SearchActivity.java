@@ -1,5 +1,19 @@
 package com.wz.tnews;
 
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import com.wz.tnews.adapter.ItemClickAdapter;
+import com.wz.tnews.adapter.NormalAdapter;
+import com.wz.tnews.bean.News;
+import com.wz.tnews.interfaces.OnItemClickListener;
+import com.wz.tnews.net.MessageHandler;
+import com.wz.tnews.net.SimpleTaskExecutor;
+import com.wz.tnews.utils.NetWorkUtils;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,25 +32,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.wz.tnews.adapter.ItemClickAdapter;
-import com.wz.tnews.adapter.NormalAdapter;
-import com.wz.tnews.bean.News;
-import com.wz.tnews.interfaces.OnItemClickListener;
-import com.wz.tnews.net.MessageHandler;
-import com.wz.tnews.net.SimpleTaskExecutor;
-import com.wz.tnews.utils.NetWorkUtils;
-
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -190,11 +185,6 @@ public class SearchActivity extends BaseActivity implements AdapterView.OnItemSe
 ////        set.add()
 //        String s = "wwwaaa";
 //        s.replace('w', 'c');
-        Point point = new Point(1, 1);
-        ColorPoint colorPoint = new ColorPoint(1, 1);
-        ColorPoint colorPoint1 = new ColorPoint(1, 2);
-        Log.i(TAG, "onItemSelected: ....." + point.equals(colorPoint) + "..." + colorPoint.equals
-                (colorPoint1) + "..." + point.equals(colorPoint1));
 
     }
 

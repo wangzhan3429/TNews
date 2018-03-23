@@ -30,6 +30,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends CActivity implements NavigationView
         .OnNavigationItemSelectedListener, OnOpenDrawerListener {
@@ -76,7 +77,8 @@ public class MainActivity extends CActivity implements NavigationView
 
     private void initView() {
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle =
+                new ActionBarDrawerToggle(this, mDrawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -92,7 +94,6 @@ public class MainActivity extends CActivity implements NavigationView
         mTvName.setText(BaseApplication.sApp.getPreferences().getString("title", "匿名"));
         String icon = BaseApplication.sApp.getPreferences().getString("icon", null);
         Glide.with(MainActivity.this).load(icon == null ? R.drawable.icon_search : icon)
-
                 .into(mImgNav);
         llNavHeader.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +119,8 @@ public class MainActivity extends CActivity implements NavigationView
                                     Log.i("login", "onCancel: ...");
                                 }
                             });
+                } else {
+                    Toast.makeText(MainActivity.this, "您已经登录了！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -141,9 +144,9 @@ public class MainActivity extends CActivity implements NavigationView
             case R.id.nav_setting:
                 swipToActivity(SettingActivity.class);
                 break;
-//            case R.id.nav_collect:
-//                swipToActivity(CollectActivity.class);
-//                break;
+            //            case R.id.nav_collect:
+            //                swipToActivity(CollectActivity.class);
+            //                break;
             case R.id.nav_search:
                 swipToActivity(SearchActivity.class);
                 break;
@@ -162,7 +165,6 @@ public class MainActivity extends CActivity implements NavigationView
             mDrawer.openDrawer(Gravity.LEFT);
         }
     }
-
 
     private void initOpenIdAndToken(Object object) {
         JSONObject jb = (JSONObject) object;

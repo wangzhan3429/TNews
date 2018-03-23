@@ -8,15 +8,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
 /**
@@ -92,15 +88,15 @@ public class WebViewActivity extends AppCompatActivity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 Log.i(TAG, "onPageStarted: ");
-                Glide.with(WebViewActivity.this).load(R.drawable.loading).asGif()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
+//                Glide.with(WebViewActivity.this).load(R.drawable.loading).asGif()
+//                        .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 Log.i(TAG, "onPageFinished: ....");
-                img.setVisibility(View.GONE);
+//                img.setVisibility(View.GONE);
             }
 
             @Override

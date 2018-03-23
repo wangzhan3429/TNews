@@ -11,6 +11,7 @@ import org.polaric.colorful.ThemeDelegate;
 import com.baidu.crabsdk.CrabSDK;
 import com.tencent.tauth.Tencent;
 import com.wz.tnews.db.SQLiteWorker;
+import com.wz.tnews.utils.CrashHandler;
 
 import android.app.Application;
 import android.content.SharedPreferences;
@@ -105,6 +106,12 @@ public class BaseApplication extends Application {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;
+    }
+
+    public void initCrashHandler(){
+        CrashHandler handler = CrashHandler.getInstance();
+        handler.init(this);
+
     }
 
 }

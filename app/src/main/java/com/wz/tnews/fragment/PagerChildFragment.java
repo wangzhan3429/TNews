@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.wz.tnews.BeautyActivity;
 import com.wz.tnews.R;
+import com.wz.tnews.WebViewActivity;
 import com.wz.tnews.adapter.BeautyAdapter;
 import com.wz.tnews.adapter.ItemClickAdapter;
 import com.wz.tnews.adapter.NormalAdapter;
@@ -33,7 +34,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 
 public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     //    "福利", "Android", "iOS ",  " 拓展资源 ", " 前端"
@@ -71,7 +71,6 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
         public static final int MSG_PULL_DOWN_SUCCESS = 8;
         public static final int MSG_PULL_DOWN_FAIL = 9;
 
-
         public MsgHandler(PagerChildFragment fragment) {
             reference = new WeakReference<>(fragment);
         }
@@ -85,7 +84,7 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
                     if (reference.get() != null) {
                         PagerChildFragment fragment = reference.get();
                         List<News> list = (List<News>) msg.obj;
-//                        fragment.newsList.clear();
+                        //                        fragment.newsList.clear();
                         fragment.newsList.addAll(list);
                         Log.i(fragment.TAG, "handleMessage:... " + list.size() + "..." + fragment
                                 .newsList.size());
@@ -279,17 +278,17 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
                     @Override
                     public void onItemClick(int position, View view) {
                         Log.i(TAG, "onItemClick: ..." + position + "..resource");
-                        openUrl(getActivity(), newsList.get(position).url);
+                        openUrlUseDefaultExploer(getActivity(), newsList.get(position).url);
                     }
                 });
                 // 收藏
-//                ((NormalAdapter) adapter).setOnConnectListener(new NormalAdapter.OnConnectListener() {
-//                    @Override
-//                    public void onConnectClick(int position, View view) {
-//                        controller.alterNews(getStringName(mFrom), newsList.get(position));
-//                        ((ImageView) view).setImageResource(R.drawable.list_open_collected);
-//                    }
-//                });
+                //                ((NormalAdapter) adapter).setOnConnectListener(new NormalAdapter.OnConnectListener() {
+                //                    @Override
+                //                    public void onConnectClick(int position, View view) {
+                //                        controller.alterNews(getStringName(mFrom), newsList.get(position));
+                //                        ((ImageView) view).setImageResource(R.drawable.list_open_collected);
+                //                    }
+                //                });
                 break;
         }
         return adapter;
@@ -306,7 +305,6 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
         super.onActivityCreated(savedInstanceState);
         loadData(mFrom);
     }
-
 
     private void loadData(int from) {
         /*首先访问内存，如果内存里面有数据，则先取内存里面的数据加载，然后访问网络
@@ -367,7 +365,7 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
      * @param context
      * @param url
      */
-    public static void openUrl(Context context, String url) {
+    public static void openUrlUseDefaultExploer(Context context, String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -375,6 +373,13 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
         ((Activity) context).overridePendingTransition(R.anim.in_from_right, R.anim.stay);
     }
 
+    public static void openUrlUseActivity(Context context, String url) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra("url", url);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+        ((Activity) context).overridePendingTransition(R.anim.in_from_right, R.anim.stay);
+    }
 
     @Override
     public void onRefresh() {
