@@ -27,8 +27,8 @@ public class SettingActivity extends BaseActivity {
         view.findViewById(R.id.setting_fadeback).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(SettingActivity.this, CommentActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(SettingActivity.this, CommentActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -73,11 +73,10 @@ public class SettingActivity extends BaseActivity {
         return view;
     }
 
-
     /**
      * 重新启动App -> 不杀进程,缓存的东西不清除,启动快
      */
-    public void restartApp () {
+    public void restartApp() {
         final Intent intent = getPackageManager()
                 .getLaunchIntentForPackage(getPackageName());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

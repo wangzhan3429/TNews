@@ -16,9 +16,8 @@ import com.wz.tnews.utils.CrashHandler;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import cn.bmob.v3.Bmob;
 import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by v_wangzhan on 2017/9/1.
@@ -40,6 +39,8 @@ public class BaseApplication extends Application {
         CrabSDK.init(this, "16250b50d9a8928b");
         initKeyValues();
         initQQ();
+        initBmob();
+        initCrashHandler();
         Colorful.init(this);
         ThemeDelegate delegate = Colorful.getThemeDelegate();
         if (delegate.getPrimaryColor() == null || delegate.getAccentColor() == null) {
@@ -69,10 +70,10 @@ public class BaseApplication extends Application {
         }
     }
 
-//    private void initBmob() {
-//        //第一：默认初始化
-//        Bmob.initialize(this, "da589021476b7f2d47d75edf19561267");
-//    }
+    private void initBmob() {
+        //第一：默认初始化
+        Bmob.initialize(this, "da589021476b7f2d47d75edf19561267");
+    }
 
     private void initKeyValues() {
         keyValues.put("福利", NewsTableMetaData.TABLE_NAME_FULI);
@@ -99,19 +100,10 @@ public class BaseApplication extends Application {
         return builder.build();
     }
 
-    public static Retrofit initRetrofit() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://interface.meiriyiwen.com/article/")
-                .client(initOkhttp())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        return retrofit;
-    }
 
     public void initCrashHandler(){
         CrashHandler handler = CrashHandler.getInstance();
         handler.init(this);
-
     }
 
 }

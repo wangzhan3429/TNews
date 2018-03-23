@@ -44,7 +44,7 @@
         <activity android:name="com.wz.tnews.CollectActivity"/>
         <activity android:name="com.wz.tnews.SearchActivity"/>
         <activity android:name="com.wz.tnews.SettingActivity"/>
-        <!--<activity android:name=".CommentActivity"/>-->
+        <activity android:name=".CommentActivity"/>
         <activity android:name=".BeautyActivity"/>
 
         <service   android:name=".ServiceTest" >

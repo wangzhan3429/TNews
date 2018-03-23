@@ -24,7 +24,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
 /**
  * Created by v_wangzhan on 2017/9/12.
  */
@@ -68,12 +67,10 @@ public class PagerChildController {
             public void onCompleted(Object event) {
                 Log.i(TAG, "onCompleted: /...///" + event);
                 if (event instanceof List) {
-                    mHandler.sendMessage(mHandler.obtainMessage(
-                            mHandler.MSG_LOAD_SQL_SUCCESS, event));
+                    mHandler.sendMessage(mHandler.obtainMessage(mHandler.MSG_LOAD_SQL_SUCCESS, event));
                     hashMap.put(type, (List<News>) event); // 缓存进内存中
                 } else {
-                    mHandler.sendEmptyMessage(
-                            mHandler.MSG_LOAD_SQL_FAIL);
+                    mHandler.sendEmptyMessage(mHandler.MSG_LOAD_SQL_FAIL);
                 }
             }
         });
@@ -87,7 +84,6 @@ public class PagerChildController {
         String tableName = BaseApplication.keyValues.get(from);
         NewsDao.alterNews(tableName, news, null);
     }
-
 
     public void pullUpToLoadMore(String from, long timestamp) {
         String tableName = BaseApplication.keyValues.get(from);
