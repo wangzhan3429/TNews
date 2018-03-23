@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 
+import com.wz.tnews.BaseApplication;
+import com.wz.tnews.UploadService;
+
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 import android.os.Process;
 
@@ -59,7 +63,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         if (!filePath.exists()) {
             filePath.mkdir();
         }
-        String fileName = path + File.separator + "crash" + formatDateTime(System.currentTimeMillis
+        String fileName = path + File.separator + "crash_" + formatDateTime(System.currentTimeMillis
                 ()) + ".trace";
         File file = new File(fileName);
         if (!file.exists()) {
@@ -79,6 +83,10 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             if (writer != null) {
                 writer.close();
             }
+            // 上传服务器 TODO
+            Intent intent = new Intent(BaseApplication.sApp, UploadService.class);
+            intent.putExtra("filePath", fileName);
+            BaseApplication.sApp.startService(intent);
         }
 
     }

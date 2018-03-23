@@ -366,6 +366,9 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
      * @param url
      */
     public static void openUrlUseDefaultExploer(Context context, String url) {
+        String s = null;
+        Log.i("test", "openUrlUseDefaultExploer: .."+s.substring(0,1));
+
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
