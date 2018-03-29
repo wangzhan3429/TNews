@@ -25,6 +25,12 @@ public class DiscoverFragment extends BaseMainFragment {
         return new DiscoverFragment();
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.i("DiscoverFragment", "setUserVisibleHint:... "+isVisibleToUser);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

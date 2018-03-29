@@ -45,6 +45,7 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
     public static final int FROM_IOS = 4;
     public static final int FROM_RESOURCE = 5;
     public static final int FROM_WEB = 6;
+    private boolean isItemShown = false;
 
     private int mFrom;
 
@@ -169,6 +170,15 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
 
                     break;
             }
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.i(TAG, "setUserVisibleHint: ..." + isVisibleToUser + "..." + mFrom);
+        if (isVisibleToUser == true) {
+            isItemShown = true;
         }
     }
 
@@ -303,6 +313,7 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.i(TAG, "onActivityCreated: ..." + mFrom);
         loadData(mFrom);
     }
 
@@ -313,6 +324,10 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
         if (from == 0) {
             // 因为第一个条目进入时候不会走onitemselected，所以第一个条目默认是true
             isItemSelected = true;
+            controller.setHashAutoRefresh(from);
+        }
+        if (!isItemShown) {
+            return;
         }
         controller.getDataFromCache(getStringName(from));
     }
@@ -366,9 +381,6 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
      * @param url
      */
     public static void openUrlUseDefaultExploer(Context context, String url) {
-        String s = null;
-        Log.i("test", "openUrlUseDefaultExploer: .."+s.substring(0,1));
-
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

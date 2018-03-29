@@ -17,6 +17,7 @@ import cn.bmob.v3.listener.UploadFileListener;
  */
 
 public class UploadService extends IntentService {
+
     private String filePath = null;
 
     public UploadService() {
