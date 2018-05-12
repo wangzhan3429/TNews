@@ -10,7 +10,6 @@ import static com.wz.tnews.fragment.PagerChildFragment.FROM_WEB;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.wz.tnews.BaseApplication;
 import com.wz.tnews.bean.News;
@@ -28,16 +27,13 @@ import okhttp3.Response;
  * Created by v_wangzhan on 2017/9/12.
  */
 
-public class PagerChildController {
+public class PagerChildController extends BaseController{
     private PagerChildFragment.MsgHandler mHandler;
     private int mFrom;
     private final String TAG = "PagerChildController";
     private String BaseUrl = "http://gank.io/api/random/data";
     // http://gank.io/api/random/data/Android/20
 
-    private ConcurrentHashMap<String, List<News>> hashMap = new ConcurrentHashMap();
-    private static final ConcurrentHashMap<Integer, Boolean> autoRefreshMap = new
-            ConcurrentHashMap<>();
 
     public PagerChildController(PagerChildFragment.MsgHandler handler, int mFrom) {
         mHandler = handler;
@@ -50,6 +46,7 @@ public class PagerChildController {
     }
 
     public void getDataFromCache(final String type) {
+        System.out.println(TAG + "..." + hashMap.get(type)+"..."+type);
         if (hashMap.get(type) != null) {
             List<News> newsArrayList = hashMap.get(type);
             mHandler.sendMessage(mHandler.obtainMessage(mHandler
@@ -61,11 +58,11 @@ public class PagerChildController {
     }
 
     public void getDataFromSQL(final String type) {
-        String tableName = BaseApplication.keyValues.get(type);
+        final String tableName = BaseApplication.keyValues.get(type);
         NewsDao.queryHistoryData(tableName, 0, 20, new NewsDao.OnCompletedListener() {
             @Override
             public void onCompleted(Object event) {
-                Log.i(TAG, "onCompleted: /...///" + event);
+                Log.i(TAG, "onCompleted: /...///" + event+"。。。"+type+"..."+tableName);
                 if (event instanceof List) {
                     mHandler.sendMessage(mHandler.obtainMessage(mHandler.MSG_LOAD_SQL_SUCCESS, event));
                     hashMap.put(type, (List<News>) event); // 缓存进内存中
@@ -129,6 +126,7 @@ public class PagerChildController {
     }
 
     public void fetchNet(int count) {
+        Log.i(TAG, "fetchNet: ..." +mFrom+"/////"+ Log.getStackTraceString(new Throwable()));
         switch (mFrom) {
             case FROM_FULI:
                 getDataWithParams("福利", count);

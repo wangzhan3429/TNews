@@ -182,6 +182,17 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        System.out.println(TAG+"..setUserVisibleHint....onAttach");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     private static HashMap<Integer, PagerChildFragment> pagerFragmentMap = new HashMap<>();
 
     public static PagerChildFragment newInstance(int from) {
@@ -333,7 +344,7 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
     }
 
     private void checkIfAutoRefresh(int from) {
-        Log.i(TAG, "onItemSelected: ..." + isItemSelected + "..." + controller.isHashAutoRefresh(from) + ""
+        Log.i(TAG, "checkIfAutoRefresh: ..." + isItemSelected + "..." + controller.isHashAutoRefresh(from) + ""
                 + ".." + from);
         if (isItemSelected && !controller.isHashAutoRefresh(from)) {
             refreshLayout.setRefreshing(true);
@@ -408,7 +419,7 @@ public class PagerChildFragment extends Fragment implements SwipeRefreshLayout.O
     public void onItemSelected(int position) {
         isItemSelected = true;
         Log.i(TAG, "onItemSelected: ..." + isItemSelected + "..." + controller + "..." + position
-                + ".." + mFrom + "..." + handler);
+                + ".." + mFrom + "..." + handler+"..."+controller.isHashAutoRefresh(position));
         if (controller == null) {
             controller = new PagerChildController(handler, mFrom);
         }

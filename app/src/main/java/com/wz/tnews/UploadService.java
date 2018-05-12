@@ -26,9 +26,19 @@ public class UploadService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         File file = new File(filePath);
         final BmobFile bmobFile = new BmobFile(file);
-        Log.i("UploadService", "onHandleIntent: ..." + file.getName() + "..." + bmobFile);
+        Log.i("UploadService", "onHandleIntent: ..." + file.getName() + "..." + bmobFile+"。。"+Thread.currentThread().getId());
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         bmobFile.upload(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
@@ -38,6 +48,8 @@ public class UploadService extends IntentService {
         });
     }
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,7 +58,7 @@ public class UploadService extends IntentService {
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         filePath = intent.getStringExtra("filePath");
-        Log.i("UploadService", "onStartCommand: ..." + filePath);
+        Log.i("UploadService", "onStartCommand: ..." + filePath+"....."+Thread.currentThread().getId());
         return super.onStartCommand(intent, flags, startId);
     }
 }

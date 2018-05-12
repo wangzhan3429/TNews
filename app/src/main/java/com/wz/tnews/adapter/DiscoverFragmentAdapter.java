@@ -1,16 +1,16 @@
 package com.wz.tnews.adapter;
 
+import com.wz.tnews.fragment.PagerChildFragment;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
-import com.wz.tnews.fragment.PagerChildFragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 
 /**
  * Created by YoKeyword on 16/2/5.
  */
-public class DiscoverFragmentAdapter extends FragmentPagerAdapter {
+public class DiscoverFragmentAdapter extends FragmentStatePagerAdapter {
     String[] mTitles = new String[]{"推荐", "开源APP", "福利", "Android", "iOS ", " 拓展资源 ", " 前端"};
 
     public DiscoverFragmentAdapter(FragmentManager fm) {

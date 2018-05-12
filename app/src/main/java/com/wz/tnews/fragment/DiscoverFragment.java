@@ -16,20 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-/**
- * Created by YoKeyword on 16/2/3.
- */
+
 public class DiscoverFragment extends BaseMainFragment {
 
     public static DiscoverFragment newInstance() {
         return new DiscoverFragment();
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        Log.i("DiscoverFragment", "setUserVisibleHint:... "+isVisibleToUser);
-    }
 
     @Nullable
     @Override

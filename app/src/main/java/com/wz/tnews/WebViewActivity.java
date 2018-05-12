@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.webkit.JsResult;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -107,6 +109,11 @@ public class WebViewActivity extends AppCompatActivity {
         });
         webView.setWebChromeClient(new WebChromeClient(){
             @Override
+            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+                return super.onJsAlert(view, url, message, result);
+            }
+
+            @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
                 Log.i(TAG, "onProgressChanged: ");
@@ -117,6 +124,14 @@ public class WebViewActivity extends AppCompatActivity {
         // 使用WebView来显示图片
 //        webView.loadDataWithBaseURL(null, content, "text/html; charset=UTF-8", null, null);
         webView.loadUrl(url);
+
+        int version = Build.VERSION.SDK_INT;
+        webView.evaluateJavascript("javascript:callJs()", new ValueCallback<String>() {
+            @Override
+            public void onReceiveValue(String value) {
+
+            }
+        });
 
 
     }
